@@ -1,0 +1,16 @@
+{
+"update_url":"http://clients2.google.com/service/update2/crx",
+  "name": "Tab Number",
+  "version" : "0.1.0",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ],
+  "icons": {
+    "128": "tab-numbering.png"
+  },
+  "manifest_version" : 2,
+  "background": {
+    "scripts": ["tab-numbering.js"],
+    "persistent": false
+  }
+}
