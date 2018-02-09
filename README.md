@@ -1,5 +1,5 @@
 # tab-numbering
-Google Chrome extension: add numbering to tab titles
+A browser extension for add numbering to tab titles. Uses WebExtensions API, and thus works on at least Chrome and Firefox.
 
 ![Screenshot](./screenshot.png)
 
@@ -12,4 +12,3 @@ This extension writes the tab number to the first eight tabs, the ones accessibl
 - does not keep in sync when dragging tabs to/from another window
 
 - will mess up with titles already starting with the characters `¹`...`⁸`
-
