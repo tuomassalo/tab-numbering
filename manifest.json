@@ -1,6 +1,6 @@
 {
-"update_url":"http://clients2.google.com/service/update2/crx",
-  "name": "Tab Number",
+  "name": "Tab Numbering",
+  "description": "This extension writes the tab number to the first eight tabs, the ones accessible with ctrl/cmd + number",
   "version" : "0.1.0",
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
@@ -10,7 +10,6 @@
   },
   "manifest_version" : 2,
   "background": {
-    "scripts": ["tab-numbering.js"],
-    "persistent": false
+    "scripts": ["tab-numbering.js"]
   }
 }

@@ -1,3 +1,5 @@
+const browser = window.browser || window.chrome
+
 var update = function(details) {
   var oldTitle = details.title
   var newTitle = oldTitle
@@ -17,7 +19,7 @@ var update = function(details) {
   }
   if(oldTitle !== newTitle) {
     try {
-      chrome.tabs.executeScript(
+      browser.tabs.executeScript(
         details.id,
         {
           code : `document.title = ${JSON.stringify(newTitle)}`
@@ -31,14 +33,14 @@ var update = function(details) {
 }
 
 function updateAll() {
-  chrome.tabs.query({}, function(tabs) {
+  browser.tabs.query({}, function(tabs) {
     tabs.forEach(update)
   })
 }
 
-chrome.tabs.onMoved.addListener(updateAll)
-chrome.tabs.onRemoved.addListener(updateAll)
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+browser.tabs.onMoved.addListener(updateAll)
+browser.tabs.onRemoved.addListener(updateAll)
+browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   update(tab)
 })
 
