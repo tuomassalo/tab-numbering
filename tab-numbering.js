@@ -39,7 +39,13 @@ function updateAll() {
 }
 
 browser.tabs.onMoved.addListener(updateAll)
-browser.tabs.onRemoved.addListener(updateAll)
+// firefox seems to do this inconsistently, thus this setTimeout kludge:
+browser.tabs.onRemoved.addListener(() => {
+  updateAll()
+  setTimeout(updateAll, 100)
+  setTimeout(updateAll, 500)
+  setTimeout(updateAll, 1000)
+})
 browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   update(tab)
 })
