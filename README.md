@@ -1,7 +1,12 @@
 # tab-numbering
 A browser extension for add numbering to tab titles. Uses WebExtensions API, and thus works on at least Chrome and Firefox.
 
-![Screenshot](./screenshot.png)
+Chrome:
+![Screenshot](./screenshot-chrome.png)
+
+Firefox:
+![Screenshot](./screenshot-firefox.png)
+
 
 This extension writes the tab number to the first eight tabs, the ones accessible with <kbd>ctrl</kbd>/<kbd>cmd</kbd> + *number*.
 
