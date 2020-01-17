@@ -5,6 +5,8 @@
  * Contributions by:  Austin Moore
  */
 
+'use strict';
+
 const browser = window.browser || window.chrome;
 
 /*
