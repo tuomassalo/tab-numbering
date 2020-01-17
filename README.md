@@ -23,7 +23,4 @@ This extension writes the tab number to the first eight tabs, the ones accessibl
 ## Known issues
 
 - does not add numbers to pinned tabs, internal error pages, "new tab" pages or other special tabs
-
-- does not keep in sync when dragging tabs to/from another window
-
 - will mess up with titles already starting with the characters `¹`...`⁸`

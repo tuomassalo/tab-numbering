@@ -62,6 +62,9 @@ const updateAll = () => {
 // Must listen for opening anchors in new tabs
 browser.tabs.onCreated.addListener(updateAll);
 
+// Must listen for tabs being attached from other windows
+browser.tabs.onAttached.addListener(updateAll);
+
 browser.tabs.onMoved.addListener(updateAll);
 
 // Firefox seems to do this inconsistently, thus this setTimeout kludge
