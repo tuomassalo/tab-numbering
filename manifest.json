@@ -1,7 +1,12 @@
 {
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{d4004003-765f-477d-be7b-0b15ff761585}"
+    }
+  },
   "name": "Tab Numbering",
   "description": "This extension writes the tab number to the first eight tabs, the ones accessible with ctrl/cmd + number",
-  "version" : "0.1.1",
+  "version" : "1.0.0",
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
   ],

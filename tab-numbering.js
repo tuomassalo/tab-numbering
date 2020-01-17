@@ -1,53 +1,77 @@
-const browser = window.browser || window.chrome
+/*
+ * Title:             tab-numbering.js
+ * Description:       Numbers your tabs!
+ * Created by:        Tuomas Salo
+ * Contributions by:  Austin Moore
+ */
 
-var update = function(details) {
-  var oldTitle = details.title
-  var newTitle = oldTitle
+const browser = window.browser || window.chrome;
 
-  if(!newTitle) {
-    return
-  }
+/*
+ * Function:     update
+ * Description:  Updates a tab to have the desired tab number
+ * Parameters:   tab (tabs.Tab)
+ *                 - The current tab
+ * Returns:      void
+ */
+const update = tab => {
+  const oldTitle = tab.title;
+  let newTitle = oldTitle;
 
-  var numbers = ['¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹']
+  if (!newTitle)
+    return;
 
-  if (newTitle && numbers.includes(newTitle[0])) {
-    newTitle = newTitle.substr(1)
-  }
+  const numbers = ['¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸'];
 
-  if(details.index < 8) {
-    newTitle = numbers[details.index] + newTitle
-  }
-  if(oldTitle !== newTitle) {
+  // Take out one of these numbers if it already exists in the title
+  if (numbers.includes(newTitle[0]))
+    newTitle = newTitle.substring(1);
+
+  if (tab.index < 8)
+    newTitle = numbers[tab.index] + newTitle;
+
+  if (oldTitle !== newTitle) {
     try {
       browser.tabs.executeScript(
-        details.id,
+        tab.id,
         {
-          code : `document.title = ${JSON.stringify(newTitle)}`
+          code: `document.title = ${JSON.stringify(newTitle)};`
         }
-      )
-      console.log("executed: " + details.id)
+      );
+      console.log(`Executed: ${tab.id}`);
     } catch(e) {
-      console.log("Tab numbering error:", e)
+      console.log('Tab numbering error:', e);
     }
   }
-}
+};
 
-function updateAll() {
-  browser.tabs.query({}, function(tabs) {
-    tabs.forEach(update)
-  })
-}
+/*
+ * Function:     updateAll
+ * Description:  Updates all tabs to have the desired tab numbers
+ * Parameters:   void
+ * Returns:      void
+ */
+const updateAll = () => {
+  browser.tabs.query({}, tabs => {
+    tabs.forEach(update);
+  });
+};
 
-browser.tabs.onMoved.addListener(updateAll)
-// firefox seems to do this inconsistently, thus this setTimeout kludge:
+// Must listen for opening anchors in new tabs
+browser.tabs.onCreated.addListener(updateAll);
+
+browser.tabs.onMoved.addListener(updateAll);
+
+// Firefox seems to do this inconsistently, thus this setTimeout kludge
 browser.tabs.onRemoved.addListener(() => {
-  updateAll()
-  setTimeout(updateAll, 100)
-  setTimeout(updateAll, 500)
-  setTimeout(updateAll, 1000)
-})
-browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  update(tab)
-})
+  updateAll();
+  setTimeout(updateAll, 100);
+  setTimeout(updateAll, 500);
+  setTimeout(updateAll, 1000);
+});
 
-updateAll()
+browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  update(tab);
+});
+
+updateAll();
