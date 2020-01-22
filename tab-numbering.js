@@ -23,13 +23,19 @@ const update = tab => {
   if (!newTitle)
     return;
 
-  const numbers = ['¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸'];
+  const numbers = ['¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 
   // Take out one of these numbers if it already exists in the title
   if (numbers.includes(newTitle[0]))
     newTitle = newTitle.substring(1);
 
-  if (tab.index < 8)
+  let tabCount = 9;
+
+  // If we are using Firefox
+  if (browser === window.browser)
+    tabCount = 8;
+
+  if (tab.index < tabCount)
     newTitle = numbers[tab.index] + newTitle;
 
   if (oldTitle !== newTitle) {
@@ -70,14 +76,14 @@ browser.tabs.onMoved.addListener(updateAll);
 
 // Must listen for tabs being removed
 browser.tabs.onRemoved.addListener((tabId, removeInfo) => {
-   /* Check that the tab has been removed every 300ms.
+   /* Check that the tab has been removed every 100ms
       Firefox fires onRemoved BEFORE it removes the tab */
   const checkTabRemoval = () => {
     browser.tabs.query({}, tabs => {
       if (tabs.filter(tab => tab.id === tabId).length === 0)
         updateAll();
       else
-        setTimeout(checkTabRemoval, 300);
+        setTimeout(checkTabRemoval, 100);
     });
   };
 
