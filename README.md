@@ -1,3 +1,29 @@
+**NOTE 2020-02-09:** This extension is currently unmaintained. I abandoned this when I ended up using a Firefox `userChrome.css` addition:
+
+```
+tabs {
+  counter-reset: tab-counter;
+}
+
+tab:nth-child(1) .tab-label::before,
+tab:nth-child(2) .tab-label::before,
+tab:nth-child(3) .tab-label::before,
+tab:nth-child(4) .tab-label::before,
+tab:nth-child(5) .tab-label::before,
+tab:nth-child(6) .tab-label::before,
+tab:nth-child(7) .tab-label::before,
+tab:nth-child(8) .tab-label::before {
+  counter-increment: tab-counter;
+  content: counter(tab-counter) "";
+  position: relative;
+  top: -0.5rem;
+  font-weight: bold;
+}
+```
+
+* Pros: very robust; easy to customize styles
+* Cons: harded to install than an extension. <a href="https://www.userchrome.org/how-create-userchrome-css.html">See instructions e.g. here</a>.
+
 # tab-numbering
 A browser extension for add numbering to tab titles. Uses WebExtensions API, and thus works on at least Chrome and Firefox.
 
