@@ -1,25 +1,38 @@
-**NOTE 2020-02-09:** This extension is currently unmaintained. I abandoned this when I ended up using a Firefox `userChrome.css` addition:
+**NOTE 2021-06-11:** This extension is currently unmaintained. I abandoned this when I ended up using a Firefox `userChrome.css` addition (updated for Firefox 89):
 
 ```
 tabs {
   counter-reset: tab-counter;
 }
 
-tab:nth-child(1) .tab-label::before,
-tab:nth-child(2) .tab-label::before,
-tab:nth-child(3) .tab-label::before,
-tab:nth-child(4) .tab-label::before,
-tab:nth-child(5) .tab-label::before,
-tab:nth-child(6) .tab-label::before,
-tab:nth-child(7) .tab-label::before,
-tab:nth-child(8) .tab-label::before {
+tab:nth-child(1) .tab-content::before,
+tab:nth-child(2) .tab-content::before,
+tab:nth-child(3) .tab-content::before,
+tab:nth-child(4) .tab-content::before,
+tab:nth-child(5) .tab-content::before,
+tab:nth-child(6) .tab-content::before,
+tab:nth-child(7) .tab-content::before,
+tab:nth-child(8) .tab-content::before {
   counter-increment: tab-counter;
   content: counter(tab-counter) "";
-  position: relative;
-  top: -0.5rem;
+
+  position: absolute;
+  left: 24px;
+  top: 7px;
+  padding: 0px 4px;
+  border-radius: 7px;
+
+  opacity: .7;
+  background: #ff0c;
+
   font-weight: bold;
+  font-size: 80%;
 }
-```
+
+/* show vertical lines between tabs */
+tab:not(:first-child) {
+  border-left: 1px solid #0004 !important;
+}```
 
 * Pros: very robust; easy to customize styles
 * Cons: harded to install than an extension. <a href="https://www.userchrome.org/how-create-userchrome-css.html">See instructions e.g. here</a>.
