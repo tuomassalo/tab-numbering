@@ -8,14 +8,14 @@ var update = function(details) {
     return
   }
 
-  var numbers = ['¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹']
+  var numbers = ['1','2','3','4','5','6','7','8','9']
 
   if (newTitle && numbers.includes(newTitle[0])) {
     newTitle = newTitle.substr(1)
   }
 
   if(details.index < 8) {
-    newTitle = numbers[details.index] + newTitle
+    newTitle = numbers[details.index] + " " + newTitle
   }
   if(oldTitle !== newTitle) {
     try {
