@@ -32,7 +32,8 @@ tab:nth-child(8) .tab-content::before {
 /* show vertical lines between tabs */
 tab:not(:first-child) {
   border-left: 1px solid #0004 !important;
-}```
+}
+```
 
 * Pros: very robust; easy to customize styles
 * Cons: harded to install than an extension. <a href="https://www.userchrome.org/how-create-userchrome-css.html">See instructions e.g. here</a>.
