@@ -1,4 +1,6 @@
-**NOTE 2021-06-11:** This extension is currently unmaintained. I abandoned this when I ended up using a Firefox `userChrome.css` addition (updated for Firefox 89):
+**NOTE 2021-06-11:** This extension is currently unmaintained. I abandoned this when I ended up using a Firefox `userChrome.css` addition (updated for Firefox 89).
+
+**NOTE 2026-08-12:** `userChrome.css` still works on Firefox 153.
 
 ```
 tabs {
