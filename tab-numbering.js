@@ -49,5 +49,8 @@ browser.tabs.onRemoved.addListener(() => {
 browser.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   update(tab)
 })
+browser.tabs.onCreated.addListener(() => {
+  updateAll()
+})
 
 updateAll()
